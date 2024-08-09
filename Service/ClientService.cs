@@ -1,6 +1,7 @@
 ﻿using BankingControlPanel.DTOs;
 using BankingControlPanel.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,46 +12,57 @@ namespace BankingControlPanel.Service
     public class ClientService: IClientService
     {
         private readonly ApplicationDbContext _context;
-        //private readonly ILogger<ClientService> logger;
-        public ClientService(ApplicationDbContext context)
+        private readonly ILogger<ClientService> _logger;
+        public ClientService(ApplicationDbContext context,
+            ILogger<ClientService> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public async Task<ClientDTO> AddClientAsync(ClientDTO clientDto)
         {
-            var client = new Client
+            try
             {
-                Email = clientDto.Email,
-                FirstName = clientDto.FirstName,
-                LastName = clientDto.LastName,
-                PersonalId = clientDto.PersonalId,
-                ProfilePhoto = clientDto.ProfilePhoto,
-                MobileNumber = clientDto.MobileNumber,
-                Sex = clientDto.Sex,
-                Address = new Address
+                var client = new Client
                 {
-                    Country = clientDto.Address.Country,
-                    City = clientDto.Address.City,
-                    Street = clientDto.Address.Street,
-                    ZipCode = clientDto.Address.ZipCode
-                },
-                Accounts = clientDto.Accounts.Select(a => new Account
-                {
-                    AccountNumber = a.AccountNumber,
-                    Balance = a.Balance
-                }).ToList()
-            };
+                    Email = clientDto.Email,
+                    FirstName = clientDto.FirstName,
+                    LastName = clientDto.LastName,
+                    PersonalId = clientDto.PersonalId,
+                    ProfilePhoto = clientDto.ProfilePhoto,
+                    MobileNumber = clientDto.MobileNumber,
+                    Sex = clientDto.Sex,
+                    Address = new Address
+                    {
+                        Country = clientDto.Address.Country,
+                        City = clientDto.Address.City,
+                        Street = clientDto.Address.Street,
+                        ZipCode = clientDto.Address.ZipCode
+                    },
+                    Accounts = clientDto.Accounts.Select(a => new Account
+                    {
+                        AccountNumber = a.AccountNumber,
+                        Balance = a.Balance
+                    }).ToList()
+                };
 
-            _context.Clients.Add(client);
-            await _context.SaveChangesAsync();
+                _context.Clients.Add(client);
+                await _context.SaveChangesAsync();
 
-            return clientDto;
+                return clientDto;
+            }catch(Exception ex)
+            {
+                _logger.LogError($"Method AddClientAsync Ex , {ex}");
+            }
+            return null;
         }
 
         public async Task<List<ClientDTO>> GetClientsAsync(ClientQueryDTO queryDto)
         {
-            IQueryable<Client> query = _context.Clients.Include(c => c.Address).Include(c => c.Accounts);
+            try
+            {
+                IQueryable<Client> query = _context.Clients.Include(c => c.Address).Include(c => c.Accounts);
 
             // Filtering
             if (!string.IsNullOrEmpty(queryDto.Filter))
@@ -108,10 +120,17 @@ namespace BankingControlPanel.Service
                     Balance = a.Balance
                 }).ToList()
             }).ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Method GetClientsAsync Ex , {ex}");
+            }
+            return null;
         }
 
         public async Task<ClientDTO> GetClientByIdAsync(int id)
         {
+            try { 
             var client = await _context.Clients.Include(c => c.Address).Include(c => c.Accounts).FirstOrDefaultAsync(c => c.Id == id);
             if (client == null) return null;
 
@@ -138,10 +157,17 @@ namespace BankingControlPanel.Service
                     Balance = a.Balance
                 }).ToList()
             };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Method GetClientByIdAsync Ex , {ex}");
+            }
+            return null;
         }
 
         public async Task<ClientDTO> UpdateClientAsync(int id, UpdateClientDTO clientDto)
         {
+            try { 
             var client = await _context.Clients.Include(c => c.Address).Include(c => c.Accounts).FirstOrDefaultAsync(c => c.Id == id);
             if (client == null) return null;
 
@@ -188,16 +214,29 @@ namespace BankingControlPanel.Service
                     Balance = a.Balance
                 }).ToList()
             };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Method UpdateClientsAsync Ex , {ex}");
+            }
+            return null;
         }
 
         public async Task<bool> DeleteClientAsync(int id)
         {
+            try { 
             var client = await _context.Clients.FindAsync(id);
             if (client == null) return false;
 
             _context.Clients.Remove(client);
             await _context.SaveChangesAsync();
             return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Method DeleteClientsAsync Ex , {ex}");
+            }
+            return false;
         }
     }
 }
