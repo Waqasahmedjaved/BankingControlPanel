@@ -1,0 +1,59 @@
+2024-08-08 09:21:49.4527 INFO User profile is available. Using 'C:\Users\WaqasAhmedJavaid\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+2024-08-08 09:21:49.9024 INFO Application started. Press Ctrl+C to shut down. 
+2024-08-08 09:21:49.9024 INFO Hosting environment: Development 
+2024-08-08 09:21:49.9024 INFO Content root path: F:\TestCode\BankingControlPanel\BankingControlPanel 
+2024-08-08 09:21:49.9888 INFO Request starting HTTP/2.0 GET https://localhost:44374/Auth   
+2024-08-08 09:21:50.0780 INFO BasicAuthentication was not authenticated. Failure message: Missing Authorization Header 
+2024-08-08 09:21:50.1028 INFO Request finished in 115.0379ms 404  
+2024-08-08 09:22:08.6963 INFO Request starting HTTP/1.1 POST https://localhost:44374/api/Auth/register application/json 82 
+2024-08-08 09:22:08.7682 INFO BasicAuthentication was not authenticated. Failure message: Missing Authorization Header 
+2024-08-08 09:22:08.7938 INFO Executing endpoint 'BankingControlPanel.Controllers.AuthController.Register (BankingControlPanel)' 
+2024-08-08 09:22:08.9373 INFO Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(BankingControlPanel.DTOs.RegistrationDTO) on controller BankingControlPanel.Controllers.AuthController (BankingControlPanel). 
+2024-08-08 09:22:09.6248 INFO Executing action method BankingControlPanel.Controllers.AuthController.Register (BankingControlPanel) - Validation state: Valid 
+2024-08-08 09:22:13.2564 INFO Register Method Invoke : {"Email":"admin2@e.com","Password":"123456","Role":"Admin"} 
+2024-08-08 09:22:15.3824 INFO Executed action method BankingControlPanel.Controllers.AuthController.Register (BankingControlPanel), returned result Microsoft.AspNetCore.Mvc.BadRequestObjectResult in 5748.8292ms. 
+2024-08-08 09:22:15.3824 INFO Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'. 
+2024-08-08 09:22:15.4041 INFO Executed action BankingControlPanel.Controllers.AuthController.Register (BankingControlPanel) in 6462.5708ms 
+2024-08-08 09:22:15.4041 INFO Executed endpoint 'BankingControlPanel.Controllers.AuthController.Register (BankingControlPanel)' 
+2024-08-08 09:22:15.4054 INFO Request finished in 6709.7446ms 400 application/problem+json; charset=utf-8 
+2024-08-08 09:22:43.2328 INFO Request starting HTTP/1.1 POST https://localhost:44374/api/Auth/register application/json 86 
+2024-08-08 09:22:43.2415 INFO BasicAuthentication was not authenticated. Failure message: Missing Authorization Header 
+2024-08-08 09:22:43.2415 INFO Executing endpoint 'BankingControlPanel.Controllers.AuthController.Register (BankingControlPanel)' 
+2024-08-08 09:22:43.2415 INFO Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(BankingControlPanel.DTOs.RegistrationDTO) on controller BankingControlPanel.Controllers.AuthController (BankingControlPanel). 
+2024-08-08 09:22:43.3122 INFO Executing action method BankingControlPanel.Controllers.AuthController.Register (BankingControlPanel) - Validation state: Valid 
+2024-08-08 09:22:45.7024 INFO Register Method Invoke : {"Email":"admin2@email.com","Password":"123456","Role":"Admin"} 
+2024-08-08 09:23:37.7562 INFO User profile is available. Using 'C:\Users\WaqasAhmedJavaid\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+2024-08-08 09:23:38.1926 INFO Application started. Press Ctrl+C to shut down. 
+2024-08-08 09:23:38.1926 INFO Hosting environment: Development 
+2024-08-08 09:23:38.1926 INFO Content root path: F:\TestCode\BankingControlPanel\BankingControlPanel 
+2024-08-08 09:23:38.2478 INFO Request starting HTTP/2.0 GET https://localhost:44374/Auth   
+2024-08-08 09:23:38.3159 INFO BasicAuthentication was not authenticated. Failure message: Missing Authorization Header 
+2024-08-08 09:23:38.3367 INFO Request finished in 89.6329ms 404  
+2024-08-08 09:23:53.3393 INFO Request starting HTTP/1.1 POST https://localhost:44374/api/Auth/register application/json 86 
+2024-08-08 09:23:53.3977 INFO BasicAuthentication was not authenticated. Failure message: Missing Authorization Header 
+2024-08-08 09:23:53.3977 INFO Executing endpoint 'BankingControlPanel.Controllers.AuthController.Register (BankingControlPanel)' 
+2024-08-08 09:23:53.5309 INFO Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(BankingControlPanel.DTOs.RegistrationDTO) on controller BankingControlPanel.Controllers.AuthController (BankingControlPanel). 
+2024-08-08 09:23:54.2051 INFO Executing action method BankingControlPanel.Controllers.AuthController.Register (BankingControlPanel) - Validation state: Valid 
+2024-08-08 09:24:23.5759 INFO Register Method Invoke : {"Email":"admin2@email.com","Password":"123456","Role":"Admin"} 
+2024-08-08 09:24:29.7140 WARN No type was specified for the decimal column 'Balance' on entity type 'Account'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. 
+2024-08-08 09:24:29.7564 INFO Entity Framework Core 3.1.32 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+2024-08-08 09:24:30.5497 INFO Executed DbCommand (58ms) [Parameters=[@__model_Email_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Users] AS [u]
+        WHERE [u].[Email] = @__model_Email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END 
+2024-08-08 09:24:31.7370 INFO Executed DbCommand (19ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Users] ([Email], [Password], [Role])
+VALUES (@p0, @p1, @p2);
+SELECT [Id]
+FROM [Users]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity(); 
+2024-08-08 09:24:31.8148 INFO Executed action method BankingControlPanel.Controllers.AuthController.Register (BankingControlPanel), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 37603.5211ms. 
+2024-08-08 09:24:31.8148 INFO Executing ObjectResult, writing value of type 'System.String'. 
+2024-08-08 09:24:31.8442 INFO Executed action BankingControlPanel.Controllers.AuthController.Register (BankingControlPanel) in 38307.2029ms 
+2024-08-08 09:24:31.8442 INFO Executed endpoint 'BankingControlPanel.Controllers.AuthController.Register (BankingControlPanel)' 
+2024-08-08 09:24:31.8442 INFO Request finished in 38520.7148ms 200 text/plain; charset=utf-8 
